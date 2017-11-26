@@ -1,0 +1,57 @@
+#char-select,
+#logo,
+#my-char,
+#button,
+#active-enemy,
+#enemies,
+#graveyard {
+	box-sizing: border-box;
+	background-color: black;
+	margin: 10px 0 10px 0;
+	padding: 10px;
+}
+
+#char-select,
+#logo,
+#button,
+#enemies,
+#graveyard {
+	height: 150px;
+}
+
+#my-char,
+#active-enemy {
+	height:200px;
+}
+
+#char-select p,
+#logo p,
+#my-char p,
+#button p,
+#active-enemy p,
+#enemies p,
+#graveyard p {
+	color: white;
+}
+
+.selectable-char,
+.enemy-character,
+.my-char,
+.defender
+{
+	height: 100%;
+	border: 1px solid white;
+	margin: auto;
+}
+
+.img-responsive {
+	margin: auto;
+	height: 55%;
+}
+
+#character-1,
+#character-2,
+#character-3,
+#character-4 {
+	border: 1px solid white;
+}
