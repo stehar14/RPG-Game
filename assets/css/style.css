@@ -1,12 +1,47 @@
+/*RPG Game Homework #4
+Created 11/21/17
+Last updated 11/29/17
+Written by: Steve Harold*/
+
+html {
+	min-height: 100%;
+	min-width: 100%;
+	position: relative;
+}
+
+body {
+	height: 100%;
+}
+
+#back {
+	background-image: url(../images/battlefield.jpg);
+	background-size: cover;
+	height: 120%;
+	width: 100%;
+	position: absolute;
+}
+
+#game {
+	margin-top: 35px;
+	padding: 10px;
+	background-color: rgba(0,0,0,0.4);
+}
+
+#logo {
+	background-image: url(../images/logo.png);
+	background-size: 100% 100%;
+	margin-top: 20px;
+
+}
+
 #char-select,
-#logo,
 #my-char,
 #button,
 #active-enemy,
 #enemies,
 #graveyard {
 	box-sizing: border-box;
-	background-color: black;
+	background-color: rgba(255,255,255,0.8);
 	margin: 10px 0 10px 0;
 	padding: 10px;
 }
@@ -31,13 +66,14 @@
 #active-enemy p,
 #enemies p,
 #graveyard p {
-	color: white;
+	color: black;
 }
 
 .selectable-char,
 .enemy-character,
 .my-char,
-.defender
+.defender,
+.dead
 {
 	height: 100%;
 	border: 1px solid white;
@@ -54,4 +90,36 @@
 #character-3,
 #character-4 {
 	border: 1px solid white;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+}
+
+#character-1 img,
+#character-2 img,
+#character-3 img,
+#character-4 img {
+	margin-top: 25%;
+}
+
+
+#character-1 {
+	background-image: url(../images/mariotitle.png);
+	background-size: cover;
+}
+
+#character-2 {
+	background-image: url(../images/foxtitle.png);
+	background-size: cover;
+}
+
+#character-3 {
+	background-image: url(../images/samustitle.png);
+	background-size: cover;
+}
+
+#character-4 {
+	background-image: url(../images/linktitle.png);
+	background-size: cover;
 }

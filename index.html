@@ -1,6 +1,6 @@
-<!--Hangman Game Homework #3
+<!--RPG Game Homework #4
 	Created 11/21/17
-	Last updated 11/21/17
+	Last updated 11/29/17
 	Written by: Steve Harold-->
 
 <!DOCTYPE html>
@@ -19,49 +19,49 @@
 </head>
 <body>
 	<div id="back" class="container-fluid">
-		<div class="container">
+		<div id="game" class="container">
 <!--choose fighter/title-->
 			<div class="row">
 				<div class="col-md-1"></div>
 				
 				<div id="char-select" class="col-md-6">
 					
-					<div id="character-1" class="col-md-3 character selectable-char">
-						<h4>Link</h4>
-						<img class="img-responsive" src="assets/images/Link.png">
-						<p class="hp">120</p>
-					</div>
-					
-					<div id="character-2" class="col-md-3 character selectable-char">
-						<h4>Mario</h4>
+					<div id="character-1" class="col-md-3 text-center character selectable-char">
+						
 						<img class="img-responsive" src="assets/images/mario.png">
-						<p class="hp">100</p>
+						<p class="hp">Health: 120</p>
 					</div>
 					
-					<div id="character-3" class="col-md-3 character selectable-char">
-						<h4>DK</h4>
-						<img class="img-responsive" src="assets/images/dk.png">
-						<p class="hp">150</p>
+					<div id="character-2" class="col-md-3 text-center character selectable-char">
+						
+						<img class="img-responsive" src="assets/images/fox.png">
+						<p class="hp">Health: 100</p>
 					</div>
 					
-					<div id="character-4" class="col-md-3 character selectable-char">
-						<h4>Kirby</h4>
-						<img class="img-responsive" src="assets/images/kirby.png">
-						<p class="hp">180</p>
+					<div id="character-3" class="col-md-3 text-center character selectable-char">
+						
+						<img class="img-responsive" src="assets/images/samus.png">
+						<p class="hp">Health: 150</p>
+					</div>
+					
+					<div id="character-4" class="col-md-3 text-center character selectable-char">
+						
+						<img class="img-responsive" src="assets/images/link.png">
+						<p class="hp">Health: 180</p>
 					</div>
 				</div>
 				
 				<div class="col-md-1"></div>
 				
 				<div id="logo" class="col-md-3">
-					<h1>Nintendo RPG</h1>
+					
 				</div>
 				
 				<div class="col-md-1"></div>
 			</div>
-		</div>
+		
 <!--my character/fight button/active enemy-->
-		<div class="container">
+		
 			<div class="row">
 				<div class="col-md-1"></div>
 					
@@ -73,6 +73,8 @@
 				
 				<div id="button" class="col-md-2">
 					<button id="attack">Attack</button>
+					<div id="game-message"></div>
+					<button id="restart">Restart</button>
 				</div>
 				
 				<div class="col-md-1"></div>
@@ -94,10 +96,7 @@
 				</div>
 				<div class="col-md-1"></div>
 			</div>	
-			<div class="col-md-12">
-				<div id="game-message"></div>
-				<button id="restart">Restart</button>
-			</div>	
+				
 		</div>
 				
 	</div>
