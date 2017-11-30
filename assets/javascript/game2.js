@@ -89,6 +89,8 @@ var champion = new Audio();
 champion.src = "./assets/audio/champion.wav";
 var chooseChar = new Audio();
 chooseChar.src ="./assets/audio/choose-char.wav";
+var cont = new Audio();
+cont.src = "./assets/audio/continue.wav";
 var defeated = new Audio();
 defeated.src ="./assets/audio/defeated.wav";
 var finalBattle = new Audio();
@@ -394,24 +396,36 @@ $(document).ready(function() {
             }, 500);
           }
           else if (character.name === "Link") {
-            lLose.play();
-            setTimeout(function(){
-            defeated.play()}, 1500);
+            setTimeout(function() {
+              lLose.play();
+              setTimeout(function(){
+                defeated.play()
+              }, 1500);
+            }, 500);
           }
           else if (character.name === "Samus") {
-            sLose.play();
-            setTimeout(function(){
-            defeated.play()}, 1500);
+            setTimeout(function() {
+              sLose.play();
+              setTimeout(function(){
+                defeated.play()
+              }, 1500);
+            }, 500);
           }
           else if (character.name === "Fox") {
-            fLose.play();
-            setTimeout(function(){
-            defeated.play()}, 1500);
+            setTimeout(function() {
+              fLose.play();
+              setTimeout(function(){
+                defeated.play()
+              }, 1500);
+            }, 500);
           };
           gameOver = true;
           $(".my-char").children(".hp").html("");
           $("#game-message").html("<p>You were defeated... womp womp...</p><p>Play again?</p>");
           $("#restart").show();
+          setTimeout(function() {
+            cont.play();
+          }, 3500);
         }
       } else {
         // Enemy is defeated
