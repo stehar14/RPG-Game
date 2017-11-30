@@ -45,9 +45,17 @@ var link = {
 
 // Audio //
 
+  // Variable to hold attack audio utilized in attack() function //
 var attackSound = new Audio();
+  
+  // Backgrouind music and loop //
 var theme = new Audio();
 theme.src = "./assets/audio/theme.mp3";
+theme.addEventListener('ended', function() {
+  this.currentTime = 0;
+  this.play();
+}, false);
+
   // Mario //
 var mWin = new Audio();
 mWin.src = "./assets/audio/mario-win.wav";
@@ -84,7 +92,7 @@ var lAttack = ["./assets/audio/link-attack-1.wav", "./assets/audio/link-attack-2
 var lCall = new Audio();
 lCall.src ="./assets/audio/link-call.wav";
 
-// Announcer //
+  // Announcer //
 var champion = new Audio();
 champion.src = "./assets/audio/champion.wav";
 var chooseChar = new Audio();
@@ -107,7 +115,7 @@ versus.src = "./assets/audio/versus.wav";
 
 // Functions //
 
-// Initialize character values from objects
+  // Initialize character values from objects //
 function initializeCharacter(chosenCharacter) {
   character.name = chosenCharacter.name;
   character.health = chosenCharacter.health;
@@ -115,7 +123,7 @@ function initializeCharacter(chosenCharacter) {
   character.attack = chosenCharacter.attack;
 }
 
-// Initialize enemy values
+  // Initialize enemy values //
 function initializeEnemy(chosenEnemy) {
   enemy.name = chosenEnemy.name;
   enemy.health = chosenEnemy.health;
@@ -123,13 +131,13 @@ function initializeEnemy(chosenEnemy) {
   enemy.attack = chosenEnemy.attack;
 }
 
-// Moves remaining characters to #enemies div
+  // Moves remaining characters to #enemies div //
 function moveToEnemies() {
   $(".selectable-char").removeClass("selectable-char col-md-3").addClass("enemy-character col-md-4");
   $("#enemies").append($(".enemy-character"));
 }
 
-// Play round audio //
+  // Play round audio //
 function round() {
    if ((enemiesDefeated === 0) && (enemySelected === true)) {
     round1.play();
@@ -148,7 +156,7 @@ function round() {
   };
 }
 
-// Play attack audio //
+  // Play attack audio //
 function attack() {
   if (character.name === "Mario") {
       var i = Math.floor((Math.random())*mAttack.length);
@@ -168,17 +176,17 @@ function attack() {
     else if (character.name === "Fox") {
       var i = Math.floor((Math.random())*fAttack.length);
       attackSound.src = fAttack[i];
-     attackSound.play();
+      attackSound.play();
     };
 }
 
-// Reset the game
+  // Reset the game //
 function resetGame() {
   
-  $("#character-1").children(".hp").html(mario.health);
-  $("#character-2").children(".hp").html(fox.health);
-  $("#character-3").children(".hp").html(samus.health);
-  $("#character-4").children(".hp").html(link.health);
+  $("#character-1").children(".hp").html("Health: " + mario.health);
+  $("#character-2").children(".hp").html("Health: " + fox.health);
+  $("#character-3").children(".hp").html("Health: " + samus.health);
+  $("#character-4").children(".hp").html("Health: " + link.health);
 
   $(".character").removeClass("defender my-char enemy-character dead col-md-4").addClass("selectable-char col-md-3");
   var available = $(".selectable-char")
@@ -201,14 +209,16 @@ function resetGame() {
 // Run Javascript when the HTML has finished loading
 $(document).ready(function() {
 
-  // Hide the "Restart" button on document load
+  // Hide the "Restart" button on document load play theme and choose character
   $("#restart").hide();
   theme.play();
   chooseChar.play();
 
   // On click events for the character divs
   // When character is clicked, and user hasn't picked a character, make clicked char "my-char"
-  // Otherwise, if user hasn't picked an enemy, make clicked char "defender"
+  // Otherwise, if user hasn't picked an enemy, make clicked char "defender" and append to appropriate div
+
+    // *** Mario *** //
   $("#character-1").on("click", function () {
     console.log("Mario is selected");
 
@@ -216,7 +226,7 @@ $(document).ready(function() {
     if(characterSelected == false) {
       $("#game-message").text("You chose Mario!");
 
-      // Set the user's character
+      // Set the user's character, play character name and versus
       initializeCharacter(mario);
       mCall.play();
       setTimeout(function(){
@@ -234,7 +244,7 @@ $(document).ready(function() {
       if($("#character-1").hasClass("enemy-character")) {
         $("#game-message").text("Your enemy is Mario!");
 
-        // Set the user's enemy
+        // Set the user's enemy, play enemy name and round # and "GO!"
         initializeEnemy(mario);
         mCall.play();
         enemySelected = true;
@@ -247,14 +257,15 @@ $(document).ready(function() {
     }
   });
 
+  // *** Fox *** //
   $("#character-2").on("click", function () {
     console.log("Fox is selected");
 
     // User is choosing the character
     if(characterSelected == false) {
-      $("#game-message").empty();
+      $("#game-message").text("You chose Fox!");
 
-      // Set the user's character
+      // Set the user's character, play character name and versus
       initializeCharacter(fox);
       fCall.play();
       setTimeout(function(){
@@ -270,9 +281,9 @@ $(document).ready(function() {
     } else if ((characterSelected == true) && (enemySelected == false)) {
       // User is choosing the enemy
       if($("#character-2").hasClass("enemy-character")) {
-        $("#game-message").empty();
+        $("#game-message").text("Your enemy is Fox!");
 
-        // Set the user's enemy
+        // Set the user's enemy, play enemy name and round # and "GO!"
         initializeEnemy(fox);
         fCall.play();
         enemySelected = true;
@@ -285,14 +296,15 @@ $(document).ready(function() {
     }
   });
 
+  // *** Samus *** //
   $("#character-3").on("click", function () {
     console.log("Samus is selected");
 
     // User is choosing the character
     if(characterSelected == false) {
-      $("#game-message").empty();
+      $("#game-message").text("You chose Samus!");
 
-      // Set the user's character
+      // Set the user's character, play character name and versus
       initializeCharacter(samus);
       sCall.play();
       setTimeout(function(){
@@ -308,9 +320,9 @@ $(document).ready(function() {
     } else if ((characterSelected == true) && (enemySelected == false)) {
       // User is choosing the enemy
       if($("#character-3").hasClass("enemy-character")) {
-        $("#game-message").empty();
+        $("#game-message").text("Your enemy is Samus!");
 
-        // Set the user's enemy
+        // Set the user's enemy, play enemy name and round # and "GO!"
         initializeEnemy(samus);
         sCall.play();
         enemySelected = true;
@@ -323,14 +335,15 @@ $(document).ready(function() {
     }
   });
 
+  // *** Link *** //
   $("#character-4").on("click", function () {
     console.log("Link is selected");
 
     // User is choosing the character
     if(characterSelected == false) {
-      $("#game-message").empty();
+      $("#game-message").text("You chose Link!");
 
-      // Set the user's character
+      // Set the user's character, play character name and versus
       initializeCharacter(link);
       lCall.play();
       setTimeout(function(){
@@ -346,9 +359,9 @@ $(document).ready(function() {
     } else if ((characterSelected == true) && (enemySelected == false)) {
       // User is choosing the enemy
       if($("#character-4").hasClass("enemy-character")) {
-        $("#game-message").empty();
+        $("#game-message").text("Your enemy is Link!");
 
-        // Set the user's enemy
+        // Set the user's enemy, play enemy name and round # and "GO!"
         initializeEnemy(link);
         lCall.play();
         enemySelected = true;
@@ -362,15 +375,13 @@ $(document).ready(function() {
   });
 
  
-
+// On click function targeting the attack button
   $("#attack").on("click", function() {
-    console.log("Attack selected");
-
-    
+    console.log("Attack selected");    
 
     // User is ready to attack the enemy
     if (characterSelected && enemySelected && !gameOver) {
-      // User attacks the enemy and decreases the enemy's health points
+      // User attacks the enemy and decreases the enemy's health points and plays random attack audio for specific character
       enemy.health = enemy.health - character.attack;
       $(".defender").children(".hp").html("Health: " + enemy.health);
       $("#game-message").html("<p>You attacked " + enemy.name + " for " + character.attack + " damage.<p>");
@@ -384,9 +395,13 @@ $(document).ready(function() {
         $(".my-char").children(".hp").html("Health: " + character.health);
 
         // Check if the user survives the attack
+
+        // If they do, show attack in game-message
         if (character.health > 0) {
           $("#game-message").append("<p>" + enemy.name + " attacked you back for " + enemy.baseAttack + " damage.</p>");
-        } else {
+        } 
+        // Otherwise, you lose and your losing sound plays, followed by defeated
+        else {
           if (character.name === "Mario") {
             setTimeout(function() {
               mLose.play();
@@ -419,9 +434,11 @@ $(document).ready(function() {
               }, 1500);
             }, 500);
           };
+
+          // store the game is over, display game-message, show continue button, play "Continue?" 
           gameOver = true;
           $(".my-char").children(".hp").html("");
-          $("#game-message").html("<p>You were defeated... womp womp...</p><p>Play again?</p>");
+          $("#game-message").html("<p>You were defeated... womp womp...</p>");
           $("#restart").show();
           setTimeout(function() {
             cont.play();
@@ -435,19 +452,52 @@ $(document).ready(function() {
         $("#graveyard").append($(".dead"));
         enemySelected = false;
 
-        $("#game-message").html("<p>You have defeated " + enemy.name + ". Choose another enemy.</p>");
+        $("#game-message").html("<p>You have defeated " + enemy.name + ".</p><p>Choose another enemy.</p>");
         
+        // Play winning sound for specific character followed by "champion is [charcater name]"
         if (character.name === "Mario") {
             mWin.play();
+            if (enemiesDefeated === 3) {
+              setTimeout(function() {
+                champion.play();
+                setTimeout(function() {
+                  mCall.play();
+                }, 1500);
+              }, 500);
+            }
           }
           else if (character.name === "Link") {
             lWin.play();
+            if (enemiesDefeated === 3) {
+              setTimeout(function() {
+                champion.play();
+                setTimeout(function() {
+                  mCall.play();
+                }, 1500);
+              }, 500);
+            }
           }
           else if (character.name === "Samus") {
             sWin.play();
+            if (enemiesDefeated === 3) {
+              setTimeout(function() {
+                champion.play();
+                setTimeout(function() {
+                  mCall.play();
+                }, 1500);
+              }, 500);
+            }
           }
           else if (character.name === "Fox") {
             fWin.play();
+            if (enemiesDefeated === 3) {
+              setTimeout(function() {
+                champion.play();
+                setTimeout(function() {
+                  mCall.play();
+                }, 1500);
+              }, 500);
+            }
           };
         // Check if the user has won the game
         if (enemiesDefeated === 3) {
@@ -472,4 +522,4 @@ $(document).ready(function() {
   });
 
 
-}); // Main routine
+});

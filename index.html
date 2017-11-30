@@ -14,6 +14,8 @@
     <!-- Added a link to Bootstrap-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
+    <link href="https://fonts.googleapis.com/css?family=Quantico:400,700" rel="stylesheet">
+
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
 
 </head>
@@ -25,7 +27,9 @@
 				<div class="col-md-1"></div>
 				
 				<div id="char-select" class="col-md-6">
-					
+					<div class="col-md-12">
+						<h2 class="text-center">Select a Fighter</h2>
+					</div>
 					<div id="character-1" class="col-md-3 text-center character selectable-char">
 						
 						<img class="img-responsive" src="assets/images/mario.png">
@@ -35,7 +39,7 @@
 					<div id="character-2" class="col-md-3 text-center character selectable-char">
 						
 						<img class="img-responsive" src="assets/images/fox.png">
-						<p class="hp">Health: 100</p>
+						<p class="hp">Health: 140</p>
 					</div>
 					
 					<div id="character-3" class="col-md-3 text-center character selectable-char">
@@ -66,21 +70,21 @@
 				<div class="col-md-1"></div>
 					
 				<div id="my-char" class="col-md-3">
-					
+					<h2 class="text-center">My Fighter</h2>					
 				</div>
 				
 				<div class="col-md-1"></div>
 				
-				<div id="button" class="col-md-2">
-					<button id="attack">Attack</button>
+				<div id="button" class="col-md-2 text-center">
+					<button class="btn-lg btn-danger" id="attack">Attack</button>
 					<div id="game-message"></div>
-					<button id="restart">Continue?</button>
+					<button class="btn-lg btn-warning" id="restart">Continue?</button>
 				</div>
 				
 				<div class="col-md-1"></div>
 				
 				<div id="active-enemy" class="col-md-3">
-					
+					<h2 class="text-center">Defender</h2>
 				</div>
 				
 				<div class="col-md-1"></div>
@@ -88,11 +92,11 @@
 			<div class="row">
 				<div class="col-md-1"></div>
 				<div id="enemies" class="col-md-4">
-					
+					<h2 class="text-center">Enemies</h2>
 				</div>
 				<div class="col-md-2"></div>
 				<div id="graveyard" class="col-md-4">
-					
+					<h2 class="text-center">Graveyard</h2>
 				</div>
 				<div class="col-md-1"></div>
 			</div>	
