@@ -1,6 +1,6 @@
 /*RPG Game Homework #4
 Created 11/21/17
-Last updated 11/29/17
+Last updated 11/30/17
 Written by: Steve Harold*/
 
 html {
@@ -19,6 +19,10 @@ body {
 	font-weight: bold;
 	margin-top: 2px;
 	margin-bottom: 2px;
+}
+
+* p {
+	padding-bottom: 5px;
 }
 
 #back {
@@ -83,6 +87,16 @@ body {
 	padding-top: 10px;
 }
 
+.my-char p,
+.defender p {
+	font-size: 20px;
+	padding-bottom: 30px;
+}
+
+#graveyard img {
+	margin-bottom: -5px;
+}
+
 #char-select p,
 #logo p,
 #my-char p,
@@ -97,8 +111,7 @@ body {
 .enemy-character,
 .my-char,
 .defender,
-.dead
-{
+.dead {
 	height: 100%;
 	border: 1px solid white;
 	margin: auto;

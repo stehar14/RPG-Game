@@ -1,6 +1,6 @@
 //RPG Game Homework #4
 //Created 11/25/17
-//Last updated 11/29/17
+//Last updated 11/30/17
 //Written by: Steve Harold
 
 // Variables to store: if user seected character and enemy, object to hold each
@@ -19,14 +19,14 @@ var mario = {
   name: "Mario",
   health: 120,
   baseAttack: 9,
-  attack: 8
+  attack: 9
 };
 
 var fox = {
   name: "Fox",
   health: 140,
   baseAttack: 7,
-  attack: 5
+  attack: 7
 };
 
 var samus = {
@@ -40,7 +40,7 @@ var link = {
   name: "Link",
   health: 180,
   baseAttack: 15,
-  attack: 25
+  attack: 15
 };
 
 // Audio //
@@ -191,8 +191,8 @@ function resetGame() {
   $(".character").removeClass("defender my-char enemy-character dead col-md-4").addClass("selectable-char col-md-3");
   var available = $(".selectable-char")
   $("#char-select").html(available);
-
-  $("#game-message").text("Select a character!");
+  $("#char-select").prepend("<h2 class='text-center'>Select a Fighter</h2>");
+  $("#game-message").html("<p>Select a character!</p>");
   $("#restart").hide();
 
   characterSelected = false;
@@ -202,6 +202,7 @@ function resetGame() {
 
   character = {};
   enemy = {};
+  chooseChar.play();
 }
 
 // Game //
@@ -224,7 +225,7 @@ $(document).ready(function() {
 
     // User is choosing the character
     if(characterSelected == false) {
-      $("#game-message").text("You chose Mario!");
+      $("#game-message").html("<p>You chose Mario!</p>");
 
       // Set the user's character, play character name and versus
       initializeCharacter(mario);
@@ -242,7 +243,7 @@ $(document).ready(function() {
     } else if ((characterSelected == true) && (enemySelected == false)) {
       // User is choosing the enemy
       if($("#character-1").hasClass("enemy-character")) {
-        $("#game-message").text("Your enemy is Mario!");
+        $("#game-message").html("<p>Your enemy is Mario!</p>");
 
         // Set the user's enemy, play enemy name and round # and "GO!"
         initializeEnemy(mario);
@@ -263,7 +264,7 @@ $(document).ready(function() {
 
     // User is choosing the character
     if(characterSelected == false) {
-      $("#game-message").text("You chose Fox!");
+      $("#game-message").html("<p>You chose Fox!</p>");
 
       // Set the user's character, play character name and versus
       initializeCharacter(fox);
@@ -281,7 +282,7 @@ $(document).ready(function() {
     } else if ((characterSelected == true) && (enemySelected == false)) {
       // User is choosing the enemy
       if($("#character-2").hasClass("enemy-character")) {
-        $("#game-message").text("Your enemy is Fox!");
+        $("#game-message").html("<p>Your enemy is Fox!</p>");
 
         // Set the user's enemy, play enemy name and round # and "GO!"
         initializeEnemy(fox);
@@ -302,7 +303,7 @@ $(document).ready(function() {
 
     // User is choosing the character
     if(characterSelected == false) {
-      $("#game-message").text("You chose Samus!");
+      $("#game-message").html("<p>You chose Samus!</p>");
 
       // Set the user's character, play character name and versus
       initializeCharacter(samus);
@@ -320,7 +321,7 @@ $(document).ready(function() {
     } else if ((characterSelected == true) && (enemySelected == false)) {
       // User is choosing the enemy
       if($("#character-3").hasClass("enemy-character")) {
-        $("#game-message").text("Your enemy is Samus!");
+        $("#game-message").html("<p>Your enemy is Samus!</p>");
 
         // Set the user's enemy, play enemy name and round # and "GO!"
         initializeEnemy(samus);
@@ -341,7 +342,7 @@ $(document).ready(function() {
 
     // User is choosing the character
     if(characterSelected == false) {
-      $("#game-message").text("You chose Link!");
+      $("#game-message").html("<p>You chose Link!</p>");
 
       // Set the user's character, play character name and versus
       initializeCharacter(link);
@@ -359,7 +360,7 @@ $(document).ready(function() {
     } else if ((characterSelected == true) && (enemySelected == false)) {
       // User is choosing the enemy
       if($("#character-4").hasClass("enemy-character")) {
-        $("#game-message").text("Your enemy is Link!");
+        $("#game-message").html("<p>Your enemy is Link!</p>");
 
         // Set the user's enemy, play enemy name and round # and "GO!"
         initializeEnemy(link);
@@ -465,6 +466,14 @@ $(document).ready(function() {
                 }, 1500);
               }, 500);
             }
+            else {
+              setTimeout(function() {
+                mCall.play();
+                setTimeout(function() {
+                  versus.play();
+                }, 1500);
+              }, 500);
+            }
           }
           else if (character.name === "Link") {
             lWin.play();
@@ -472,7 +481,15 @@ $(document).ready(function() {
               setTimeout(function() {
                 champion.play();
                 setTimeout(function() {
-                  mCall.play();
+                  lCall.play();
+                }, 1500);
+              }, 500);
+            }
+            else {
+              setTimeout(function() {
+                lCall.play();
+                setTimeout(function() {
+                  versus.play();
                 }, 1500);
               }, 500);
             }
@@ -483,7 +500,15 @@ $(document).ready(function() {
               setTimeout(function() {
                 champion.play();
                 setTimeout(function() {
-                  mCall.play();
+                  sCall.play();
+                }, 1500);
+              }, 500);
+            }
+            else {
+              setTimeout(function() {
+                sCall.play();
+                setTimeout(function() {
+                  versus.play();
                 }, 1500);
               }, 500);
             }
@@ -494,7 +519,15 @@ $(document).ready(function() {
               setTimeout(function() {
                 champion.play();
                 setTimeout(function() {
-                  mCall.play();
+                  fCall.play();
+                }, 1500);
+              }, 500);
+            }
+            else {
+              setTimeout(function() {
+                fCall.play();
+                setTimeout(function() {
+                  versus.play();
                 }, 1500);
               }, 500);
             }
