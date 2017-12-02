@@ -1,6 +1,6 @@
 //RPG Game Homework #4
 //Created 11/25/17
-//Last updated 11/30/17
+//Last updated 12/2/17
 //Written by: Steve Harold
 
 // Variables to store: if user seected character and enemy, object to hold each
@@ -18,29 +18,33 @@ var gameOver = false;
 var mario = {
   name: "Mario",
   health: 120,
-  baseAttack: 9,
-  attack: 9
+  baseAttack: 8,
+  attack: 8,
+  counterAttack: 15
 };
 
 var fox = {
   name: "Fox",
-  health: 140,
-  baseAttack: 7,
-  attack: 7
+  health: 100,
+  baseAttack: 14,
+  attack: 14,
+  counterAttack: 5
 };
 
 var samus = {
   name: "Samus",
-  health: 150,
-  baseAttack: 20,
-  attack: 20
+  health: 140,
+  baseAttack: 8,
+  attack: 8,
+  counterAttack: 20
 };
 
 var link = {
   name: "Link",
   health: 180,
-  baseAttack: 15,
-  attack: 15
+  baseAttack: 7,
+  attack: 7,
+  counterAttack: 20
 };
 
 // Audio //
@@ -159,13 +163,13 @@ function initializeCharacter(chosenCharacter) {
 function initializeEnemy(chosenEnemy) {
   enemy.name = chosenEnemy.name;
   enemy.health = chosenEnemy.health;
-  enemy.baseAttack = chosenEnemy.baseAttack;
+  enemy.counterAttack = chosenEnemy.counterAttack;
   enemy.attack = chosenEnemy.attack;
 }
 
   // Moves remaining characters to #enemies div //
 function moveToEnemies() {
-  $(".selectable-char").removeClass("selectable-char col-md-3").addClass("enemy-character col-md-4");
+  $(".selectable-char").removeClass("selectable-char col-md-3 col-xs-3").addClass("enemy-character col-md-4 col-xs-4");
   $("#enemies").append($(".enemy-character"));
 }
 
@@ -227,7 +231,7 @@ function resetGame() {
   $("#character-3").children(".hp").html("Health: " + samus.health);
   $("#character-4").children(".hp").html("Health: " + link.health);
 
-  $(".character").removeClass("defender my-char enemy-character dead col-md-4").addClass("selectable-char col-md-3");
+  $(".character").removeClass("defender my-char enemy-character dead col-md-4 col-xs-4").addClass("selectable-char col-md-3 col-xs-3");
   var available = $(".selectable-char")
   $("#char-select").html(available);
   $("#char-select").prepend("<h2 class='text-center'>Select a Fighter</h2>");
@@ -275,7 +279,7 @@ $(document).ready(function() {
       characterSelected = true;
 
       // Display the chosen character
-      $("#character-1").removeClass("selectable-char col-md-3").addClass("my-char");
+      $("#character-1").removeClass("selectable-char col-md-3 col-xs-3").addClass("my-char");
       $("#my-char").append(this);
 
       // Move the remaining characters to the enemies section
@@ -293,7 +297,7 @@ $(document).ready(function() {
         setTimeout(function(){
         round()}, 1000);
         // Add the character to the defender section
-        $("#character-1").removeClass("enemy-character col-md-4").addClass("defender");
+        $("#character-1").removeClass("enemy-character col-md-4 col-xs-4").addClass("defender");
         $("#active-enemy").append(this);
       }
     }
@@ -315,7 +319,7 @@ $(document).ready(function() {
       characterSelected = true;
 
       // Display the chosen character
-      $("#character-2").removeClass("selectable-char col-md-3").addClass("my-char");
+      $("#character-2").removeClass("selectable-char col-md-3 col-xs-3").addClass("my-char");
       $("#my-char").append(this);
 
       // Move the remaining characters to the enemies section
@@ -333,7 +337,7 @@ $(document).ready(function() {
         setTimeout(function(){
         round()}, 1000);
         // Add the character to the defender section 
-        $("#character-2").removeClass("enemy-character col-md-4").addClass("defender");
+        $("#character-2").removeClass("enemy-character col-md-4 col-xs-4").addClass("defender");
         $("#active-enemy").append(this);
       }
     }
@@ -355,7 +359,7 @@ $(document).ready(function() {
       characterSelected = true;
 
       // Display the chosen character
-      $("#character-3").removeClass("selectable-char col-md-3").addClass("my-char");
+      $("#character-3").removeClass("selectable-char col-md-3 col-xs-3").addClass("my-char");
       $("#my-char").append(this);
 
       // Move the remaining characters to the enemies section
@@ -373,7 +377,7 @@ $(document).ready(function() {
         setTimeout(function(){
         round()}, 1000);
         // Add the character to the defender section 
-        $("#character-3").removeClass("enemy-character col-md-4").addClass("defender");
+        $("#character-3").removeClass("enemy-character col-md-4 col-xs-4").addClass("defender");
         $("#active-enemy").append(this);
       }
     }
@@ -395,7 +399,7 @@ $(document).ready(function() {
       characterSelected = true;
 
       // Display the chosen character
-      $("#character-4").removeClass("selectable-char col-md-3").addClass("my-char");
+      $("#character-4").removeClass("selectable-char col-md-3 col-xs-3").addClass("my-char");
       $("#my-char").append(this);
 
       // Move the remaining characters to the enemies section
@@ -413,7 +417,7 @@ $(document).ready(function() {
         setTimeout(function(){
         round()}, 1000);
         // Add the character to the defender section 
-        $("#character-4").removeClass("enemy-character col-md-4").addClass("defender");
+        $("#character-4").removeClass("enemy-character col-md-4 col-xs-4").addClass("defender");
         $("#active-enemy").append(this);
       }
     }
@@ -436,14 +440,14 @@ $(document).ready(function() {
 
       // If enemy is still alive, they counter attack the user
       if (enemy.health > 0) {
-        character.health = character.health - enemy.baseAttack;
+        character.health = character.health - enemy.counterAttack;
         $(".my-char").children(".hp").html("Health: " + character.health);
 
         // Check if the user survives the attack
 
         // If they do, show attack in game-message
         if (character.health > 0) {
-          $("#game-message").append("<p>" + enemy.name + " attacked you back for " + enemy.baseAttack + " damage.</p>");
+          $("#game-message").append("<p>" + enemy.name + " attacked you back for " + enemy.counterAttack + " damage.</p>");
         } 
         // Otherwise, you lose and your losing sound plays, followed by defeated
         else {
@@ -492,7 +496,7 @@ $(document).ready(function() {
       } else {
         // Enemy is defeated
         enemiesDefeated++;
-        $(".defender").removeClass("defender").addClass("dead col-md-4");
+        $(".defender").removeClass("defender").addClass("dead col-md-4 col-xs-4");
         $(".dead").children(".hp").html("");
         $("#graveyard").append($(".dead"));
         enemySelected = false;
