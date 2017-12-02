@@ -46,10 +46,10 @@ var link = {
 // Audio //
 
   // Variable to hold attack audio utilized in attack() function //
-var attackSound = new Audio();
-  
+var attackSound = document.createElement("audio");
+attackSound.id = "1";
   // Backgrouind music and loop //
-var theme = new Audio();
+var theme = document.createElement("audio");
 theme.src = "./assets/audio/theme.mp3";
 theme.addEventListener('ended', function() {
   this.currentTime = 0;
@@ -57,63 +57,95 @@ theme.addEventListener('ended', function() {
 }, false);
 
   // Mario //
-var mWin = new Audio();
+var mWin = document.createElement("audio");
+mWin.id = "2";
 mWin.src = "./assets/audio/mario-win.wav";
-var mLose = new Audio();
+var mLose = document.createElement("audio");
+mLose.id = "3";
 mLose.src ="./assets/audio/mario-hurt.wav";
 var mAttack = ["./assets/audio/mario-attack-1.wav", "./assets/audio/mario-attack-2.wav", "./assets/audio/mario-attack-3.wav", "./assets/audio/mario-attack-4.wav"];
-var mCall = new Audio();
+var mCall = document.createElement("audio");
+mCall.id = "4";
 mCall.src ="./assets/audio/mario-call.wav";
 
   // Fox //
-var fWin = new Audio();
+var fWin = document.createElement("audio");
+fWin.id = "5";
 fWin.src = "./assets/audio/fox-win.wav";
-var fLose = new Audio();
+var fLose = document.createElement("audio");
+fLose.id = "6";
 fLose.src ="./assets/audio/fox-hurt.wav";
 var fAttack = ["./assets/audio/fox-attack-1.wav", "./assets/audio/fox-attack-2.wav", "./assets/audio/fox-attack-3.wav", "./assets/audio/fox-attack-4.wav"];
-var fCall = new Audio();
+var fCall = document.createElement("audio");
+fCall.id = "7";
 fCall.src ="./assets/audio/fox-call.wav";
 
   // Samus //
-var sWin = new Audio();
+var sWin = document.createElement("audio");
+sWin.id = "8";
 sWin.src = "./assets/audio/samus-win.wav";
-var sLose = new Audio();
+var sLose = document.createElement("audio");
+sLose.id = "9";
 sLose.src ="./assets/audio/samus-hurt.wav";
 var sAttack = ["./assets/audio/samus-attack-1.wav", "./assets/audio/samus-attack-2.wav", "./assets/audio/samus-attack3.wav"]
-var sCall = new Audio();
+var sCall = document.createElement("audio");
+sCall.id = "10";
 sCall.src ="./assets/audio/samus-call.wav";
 
   // Link //
-var lWin = new Audio();
+var lWin = document.createElement("audio");
+lWin.id = "11";
 lWin.src = "./assets/audio/link-win.wav";
-var lLose = new Audio();
+var lLose = document.createElement("audio");
+lLose.id = "12";
 lLose.src ="./assets/audio/link-hurt.wav";
 var lAttack = ["./assets/audio/link-attack-1.wav", "./assets/audio/link-attack-2.wav", "./assets/audio/link-attack-3.wav"];
-var lCall = new Audio();
+var lCall = document.createElement("audio");
+lCall.id = "13";
 lCall.src ="./assets/audio/link-call.wav";
 
   // Announcer //
-var champion = new Audio();
+var champion = document.createElement("audio");
+champion.id = "14";
 champion.src = "./assets/audio/champion.wav";
-var chooseChar = new Audio();
+var chooseChar = document.createElement("audio");
+chooseChar.id = "15";
 chooseChar.src ="./assets/audio/choose-char.wav";
-var cont = new Audio();
+var cont = document.createElement("audio");
+cont.id = "16";
 cont.src = "./assets/audio/continue.wav";
-var defeated = new Audio();
+var defeated = document.createElement("audio");
+defeated.id = "17";
 defeated.src ="./assets/audio/defeated.wav";
-var finalBattle = new Audio();
+var finalBattle = document.createElement("audio");
+finalBattle.id = "18";
 finalBattle.src ="./assets/audio/final-battle.wav";
-var go = new Audio();
+var go = document.createElement("audio");
+go.id = "19";
 go.src = "./assets/audio/go.wav";
-var round1 = new Audio();
+var round1 = document.createElement("audio");
+round1.id = "20";
 round1.src ="./assets/audio/round-1.wav";
-var round2 = new Audio();
+var round2 = document.createElement("audio");
+round2.id = "21";
 round2.src ="./assets/audio/round-2.wav";
-var versus = new Audio();
+var versus = document.createElement("audio");
+versus.id = "22";
 versus.src = "./assets/audio/versus.wav";
 
 
 // Functions //
+  // *** NOT CURRENTLY FUNCTIONING *** //
+  // Stops all audio to play new audio in case user input is too fast
+//function {
+  //var x = document.getElementsByTagName("audio");
+  //var i;
+  //for (i = 1; i<x.length; i++) {
+
+    //x[i].pause();
+    //x[i].currentTime = 0;
+ // }
+//}
 
   // Initialize character values from objects //
 function initializeCharacter(chosenCharacter) {
@@ -140,16 +172,19 @@ function moveToEnemies() {
   // Play round audio //
 function round() {
    if ((enemiesDefeated === 0) && (enemySelected === true)) {
+    
     round1.play();
     setTimeout(function(){
         go.play()}, 1500);
   }
   else if (enemiesDefeated === 1) {
+    
     round2.play();
     setTimeout(function(){
         go.play()}, 1500);
   }
   else if (enemiesDefeated === 2) {
+    
     finalBattle.play();
     setTimeout(function(){
         go.play()}, 1500);
@@ -160,21 +195,25 @@ function round() {
 function attack() {
   if (character.name === "Mario") {
       var i = Math.floor((Math.random())*mAttack.length);
+      
       attackSound.src = mAttack[i];
       attackSound.play();
     }
     else if (character.name === "Link") {
       var i = Math.floor((Math.random())*lAttack.length);
+      
       attackSound.src = lAttack[i];
       attackSound.play();
     }
     else if (character.name === "Samus") {
       var i = Math.floor((Math.random())*sAttack.length);
+      
       attackSound.src = sAttack[i];
       attackSound.play();
     }
     else if (character.name === "Fox") {
       var i = Math.floor((Math.random())*fAttack.length);
+      
       attackSound.src = fAttack[i];
       attackSound.play();
     };
@@ -202,6 +241,7 @@ function resetGame() {
 
   character = {};
   enemy = {};
+  
   chooseChar.play();
 }
 
@@ -221,7 +261,6 @@ $(document).ready(function() {
 
     // *** Mario *** //
   $("#character-1").on("click", function () {
-    console.log("Mario is selected");
 
     // User is choosing the character
     if(characterSelected == false) {
@@ -229,9 +268,10 @@ $(document).ready(function() {
 
       // Set the user's character, play character name and versus
       initializeCharacter(mario);
+      
       mCall.play();
       setTimeout(function(){
-        versus.play()}, 1500);
+        versus.play()}, 1000);
       characterSelected = true;
 
       // Display the chosen character
@@ -247,10 +287,11 @@ $(document).ready(function() {
 
         // Set the user's enemy, play enemy name and round # and "GO!"
         initializeEnemy(mario);
+        
         mCall.play();
         enemySelected = true;
         setTimeout(function(){
-        round()}, 1500);
+        round()}, 1000);
         // Add the character to the defender section
         $("#character-1").removeClass("enemy-character col-md-4").addClass("defender");
         $("#active-enemy").append(this);
@@ -260,7 +301,6 @@ $(document).ready(function() {
 
   // *** Fox *** //
   $("#character-2").on("click", function () {
-    console.log("Fox is selected");
 
     // User is choosing the character
     if(characterSelected == false) {
@@ -268,9 +308,10 @@ $(document).ready(function() {
 
       // Set the user's character, play character name and versus
       initializeCharacter(fox);
+      
       fCall.play();
       setTimeout(function(){
-        versus.play()}, 1500);
+        versus.play()}, 1000);
       characterSelected = true;
 
       // Display the chosen character
@@ -286,10 +327,11 @@ $(document).ready(function() {
 
         // Set the user's enemy, play enemy name and round # and "GO!"
         initializeEnemy(fox);
+        
         fCall.play();
         enemySelected = true;
         setTimeout(function(){
-        round()}, 1500);
+        round()}, 1000);
         // Add the character to the defender section 
         $("#character-2").removeClass("enemy-character col-md-4").addClass("defender");
         $("#active-enemy").append(this);
@@ -299,7 +341,6 @@ $(document).ready(function() {
 
   // *** Samus *** //
   $("#character-3").on("click", function () {
-    console.log("Samus is selected");
 
     // User is choosing the character
     if(characterSelected == false) {
@@ -307,9 +348,10 @@ $(document).ready(function() {
 
       // Set the user's character, play character name and versus
       initializeCharacter(samus);
+      
       sCall.play();
       setTimeout(function(){
-        versus.play()}, 1500);
+        versus.play()}, 1000);
       characterSelected = true;
 
       // Display the chosen character
@@ -325,10 +367,11 @@ $(document).ready(function() {
 
         // Set the user's enemy, play enemy name and round # and "GO!"
         initializeEnemy(samus);
+        
         sCall.play();
         enemySelected = true;
         setTimeout(function(){
-        round()}, 1500);
+        round()}, 1000);
         // Add the character to the defender section 
         $("#character-3").removeClass("enemy-character col-md-4").addClass("defender");
         $("#active-enemy").append(this);
@@ -338,7 +381,6 @@ $(document).ready(function() {
 
   // *** Link *** //
   $("#character-4").on("click", function () {
-    console.log("Link is selected");
 
     // User is choosing the character
     if(characterSelected == false) {
@@ -346,9 +388,10 @@ $(document).ready(function() {
 
       // Set the user's character, play character name and versus
       initializeCharacter(link);
+      
       lCall.play();
       setTimeout(function(){
-        versus.play()}, 1500);
+        versus.play()}, 1000);
       characterSelected = true;
 
       // Display the chosen character
@@ -364,10 +407,11 @@ $(document).ready(function() {
 
         // Set the user's enemy, play enemy name and round # and "GO!"
         initializeEnemy(link);
+        
         lCall.play();
         enemySelected = true;
         setTimeout(function(){
-        round()}, 1500);
+        round()}, 1000);
         // Add the character to the defender section 
         $("#character-4").removeClass("enemy-character col-md-4").addClass("defender");
         $("#active-enemy").append(this);
@@ -378,7 +422,6 @@ $(document).ready(function() {
  
 // On click function targeting the attack button
   $("#attack").on("click", function() {
-    console.log("Attack selected");    
 
     // User is ready to attack the enemy
     if (characterSelected && enemySelected && !gameOver) {
@@ -386,6 +429,7 @@ $(document).ready(function() {
       enemy.health = enemy.health - character.attack;
       $(".defender").children(".hp").html("Health: " + enemy.health);
       $("#game-message").html("<p>You attacked " + enemy.name + " for " + character.attack + " damage.<p>");
+      
       attack();
       // User's attack power increases
       character.attack = character.attack + character.baseAttack;
@@ -457,79 +501,87 @@ $(document).ready(function() {
         
         // Play winning sound for specific character followed by "champion is [charcater name]"
         if (character.name === "Mario") {
-            mWin.play();
+            setTimeout(function() {
+              mWin.play();
+            }, 500);
             if (enemiesDefeated === 3) {
               setTimeout(function() {
                 champion.play();
                 setTimeout(function() {
                   mCall.play();
-                }, 1500);
-              }, 500);
+                }, 2000);
+              }, 1500);
             }
             else {
               setTimeout(function() {
                 mCall.play();
                 setTimeout(function() {
                   versus.play();
-                }, 1500);
-              }, 500);
+                }, 1000);
+              }, 1500);
             }
           }
           else if (character.name === "Link") {
-            lWin.play();
+            setTimeout(function() {
+              lWin.play();
+            }, 500);
             if (enemiesDefeated === 3) {
               setTimeout(function() {
                 champion.play();
                 setTimeout(function() {
                   lCall.play();
-                }, 1500);
-              }, 500);
+                }, 2000);
+              }, 1500);
             }
             else {
               setTimeout(function() {
                 lCall.play();
                 setTimeout(function() {
                   versus.play();
-                }, 1500);
-              }, 500);
+                }, 1000);
+              }, 1500);
             }
           }
           else if (character.name === "Samus") {
-            sWin.play();
+            setTimeout(function() {
+              sWin.play();
+            }, 500);
             if (enemiesDefeated === 3) {
               setTimeout(function() {
                 champion.play();
                 setTimeout(function() {
                   sCall.play();
-                }, 1500);
-              }, 500);
+                }, 2000);
+              }, 1500);
             }
             else {
               setTimeout(function() {
                 sCall.play();
                 setTimeout(function() {
                   versus.play();
-                }, 1500);
-              }, 500);
+                }, 1000);
+              }, 1500);
             }
           }
           else if (character.name === "Fox") {
-            fWin.play();
+            setTimeout(function() {
+              fWin.play();
+            }, 500);
             if (enemiesDefeated === 3) {
               setTimeout(function() {
                 champion.play();
                 setTimeout(function() {
                   fCall.play();
-                }, 1500);
-              }, 500);
+                }, 2000);
+              }, 1500);
             }
             else {
               setTimeout(function() {
                 fCall.play();
                 setTimeout(function() {
                   versus.play();
-                }, 1500);
-              }, 500);
+                }, 1000);
+              }, 1500);
             }
           };
         // Check if the user has won the game
@@ -549,7 +601,6 @@ $(document).ready(function() {
   });
 
   $("#restart").on("click", function() {
-    console.log("Restart selected");
 
     resetGame();
   });
